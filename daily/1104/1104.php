@@ -4,7 +4,7 @@ class test {
     public function one(){
         $ip = "192.168.1.1";
         $result = ip2long($ip);
-        echo $result;
+        return $result;
     }
 
     //猴子递归
@@ -15,6 +15,17 @@ class test {
         return ($this->recursion($n + 1) + 1)*2;
     }
 
+    //猴子非递归
+    public function Nrecursion($n){
+        static $number=1;
+        if($n!=10){
+            for ($i = $n; $i < 10; $i++) {
+                $number = ($number + 1) * 2;
+            }
+        }
+        return $number;
+    }
+
     public function three($num){
         $length = 0;
         $n = 10;
@@ -23,14 +34,20 @@ class test {
             $n = $n * 10;
             $length++;
         } while ($result >= 1);
-        echo $length;
+        return  $length;
     }
 }
+//实例化test
 $obj = new test;
-$obj->one();
+//问题1
+echo $obj->one();
 echo "<hr>";
+//问题2递归
 echo ($obj->recursion(1));
 echo "<hr>";
+echo ($obj->Nrecursion(1));
+echo "<hr>";
+//问题3
 echo ($obj->three(1));
 echo "<hr>";
 
@@ -70,14 +87,11 @@ $data[$obj1->weight] = $obj1->name;
 $data[$obj2->weight] = $obj2->name;
 $data[$obj3->weight] = $obj3->name;
 
+
 //输出结果
 echo four($data);
 
 //定义函数
 function four($arr){
-    krsort($arr);
-    foreach($arr as $val){
-        return $val;
-        break;
-    }
+    return max($arr);
 }
