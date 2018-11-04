@@ -93,5 +93,6 @@ echo four($data);
 
 //定义函数
 function four($arr){
-    return max($arr);
+    ksort($arr);
+    return array_pop($arr);
 }
